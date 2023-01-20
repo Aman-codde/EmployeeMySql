@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const mysql = require("mysql");
 const db = mysql.createPool({
@@ -9,10 +11,20 @@ const db = mysql.createPool({
   database: "employeeDB",
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello there!");
-});
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+app.use(express.json());
 
-app.listen(3001, () => {
-  console.log("running on port 3001");
+// const sql =
+//     "INSERT INTO employee_performance (name,performance,date) values ('Sally', 34, '2022-06-15')";
+//   db.query(sql, (err, result) => {
+//     res.send("hello world there db");
+//   });
+
+// app.get("/", (req, res) => {
+//   res.send("hello world there!!");
+// });
+
+app.listen(3002, () => {
+  console.log("running on port 3002");
 });
