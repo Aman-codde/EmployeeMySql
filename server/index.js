@@ -25,6 +25,13 @@ app.use(express.json());
 //   res.send("hello world there!!");
 // });
 
+app.get("/api/get", (req, res) => {
+  const sqlSelect = "SELECT * FROM employee_performance";
+  db.query(sqlSelect, (err, result) => {
+    console.log(result);
+  });
+});
+
 app.listen(3002, () => {
   console.log("running on port 3002");
 });
